@@ -6,10 +6,22 @@ import LoginModal from "../components/LoginModal.jsx";
 function Home () {
 
   const highlights = [
-    "✨ AI-Powered Website Generation",
-    "📱 Fully Responsive",
-    "🔒 Secure & Reliable"
-  ]
+    {
+      title: "✨ AI-Powered Website Generation",
+      description:
+        "Type your idea in seconds and watch AI turn it into a fully designed, professional website—complete with modern layout, content, and instant readiness to publish."
+    },
+    {
+      title: "📱 Fully Responsive",
+      description:
+        "Your website automatically adapts to all screen sizes, ensuring a smooth and perfect experience on mobile, tablet, and desktop devices."
+    },
+    {
+      title: "🔒 Secure & Reliable",
+      description:
+        "Built with strong security standards and reliable infrastructure to keep your website safe, stable, and always available."
+    }
+  ];
 
   const [openLogin, setOpenlogin] = useState(false);
 
@@ -70,9 +82,9 @@ function Home () {
                 whileInView = {{opacity: 1, y: 0}}
                 className = "rounded-2xl bg-white/5 border border-white/10 p-10">
                
-                <h1 className="text-xl font-semibold mb-3">{h}</h1>
+                <h1 className="text-xl font-semibold mb-3">{h.title}</h1>
                 <p className="text-sm text-zinc-400 ">
-                  Describe your idea in plain English and watch AI create a beautiful, fully responsive website in seconds
+                  {/* Describe your idea in plain English and watch AI create a beautiful, fully responsive website in seconds */}{h.description}
                 </p>
               </motion.div>
             ))}

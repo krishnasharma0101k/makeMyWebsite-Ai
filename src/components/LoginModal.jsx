@@ -51,6 +51,31 @@ function LoginModal ({open, onClose}) {
                     Genweb.ai
                      </span>
                 </h2>
+
+                <motion.button
+                whileHover = {{ scale: 1.04 }}
+                whileTap = {{ scale: 0.96 }}
+                className = "group relative w-full h-13 rounded-xl bg-white text-black font-semibold shadow-xl overflow-hidden"
+                >
+                
+
+               <div className="relative flex items-center justify-center gap-3">
+                
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/3840px-Google_%22G%22_logo.svg.png" alt="" className="h-8 w-8" />
+                    Continue with Google
+                    </div>
+                </motion.button>
+
+            <div className="flex items-center gap-4 my-10">
+                <div className="h-px bg-white/10 flex-1"/>
+                <span className="text-xs text-zinc-500 tracking-wide">secure login</span>
+                <div className="h-px bg-white/10 flex-1"/>
+            </div>
+
+            <p className="text-sm text-zinc-500">
+                By continuing, you agree to our <a href="#" className="text-blue-400 hover:underline">Terms of Service</a> and <a href="#" className="text-blue-400 hover:underline">Privacy Policy</a>.
+            </p>
+
             </div>
 
         </div>

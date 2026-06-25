@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
-
+export const severUrl = "http://localhost:3000"
 
 function App () {
   return (

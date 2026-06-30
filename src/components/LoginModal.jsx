@@ -4,14 +4,14 @@ import { AnimatePresence, motion } from "motion/react";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../firebase";
 import axios from "axios";
-import { severUrl } from "../App";
+import { serverUrl } from "../App";
 
 function LoginModal ({open, onClose}) {
 
     const handleGoogleAuth = async () => {
         try {
             const result = await signInWithPopup(auth, provider)
-            const {data} = await axios.post(`${severUrl}/api/auth/google`, {
+            const {data} = await axios.post(`${serverUrl}/api/auth/google`, {
                 name: result.user.displayName,
                 email: result.user.email,
                 avatar: result.user.photoURL

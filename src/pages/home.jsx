@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import LoginModal from "../components/LoginModal.jsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Coins } from "lucide-react"
 import { div } from "motion/react-client";
+import axios from "axios";
+import { serverUrl } from "../App.jsx";
+import { setUserData } from "../redux/userSlice.js";
+import { log } from "firebase/firestore/pipelines";
 
 function Home () {
 
@@ -28,6 +32,16 @@ function Home () {
   const [openLogin, setOpenlogin] = useState(false);
   const { userData } = useSelector(state => state.user)
   const [openProfile, setOpenProfile] = useState(false)
+  const dispatch = useDispatch()
+  const handlelogOut = async () => {
+    try {
+      await axios.get(`${serverUrl}/api/auth/logout`, {withCredentials: true})
+      dispatch(setUserData(null))
+      setOpenProfile(false)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
   return (
@@ -46,11 +60,11 @@ function Home () {
               Pricing
             </div>
 
-            {userData && <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm cursor-pointer hover:bg-white/10 transition">
+            {userData && <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm cursor-pointer hover:bg-white/10 transition">
 
               <Coins size = {14} className=" text-yellow-400"/>
               <span className="text-zinc-300">
-                { userData.Credits}
+                { userData.credits}
                 </span>
               <span className="font-semibold">
                 +
@@ -86,6 +100,18 @@ function Home () {
                             {userData.email}
                             </p>
                         </div>
+
+                        <button className="md:hidden w-full px-4 py-3 flex items-center gap-2 text-sm border-b boder-white/10 hover:bg-white/5">
+                           <Coins size = {14} className=" text-yellow-400"/>
+              <span className="text-zinc-300">
+                { userData.Credits}
+                </span>
+              <span className="font-semibold">
+                +
+                </span>
+                        </button>
+                        <button className="w-full px-4 py-3 text-left text-sm hover:bg-white/5">Dashboard</button>
+                        <button className="w-full px-4 py-3 text-left text-sm text-red-400 hover:bg-white/5" onClick={handlelogOut}>Logout</button>
                         
                       </motion.div>
                    </> 

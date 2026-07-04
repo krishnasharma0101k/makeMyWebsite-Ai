@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { setUserData } from "../redux/userSlice";
 
 function LoginModal ({open, onClose}) {
-    const dispatch = useDispatch
+    const dispatch = useDispatch()
 
     const handleGoogleAuth = async () => {
         try {

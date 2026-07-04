@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import LoginModal from "../components/LoginModal.jsx";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Coins } from "lucide-react"
 import { div } from "motion/react-client";
 import axios from "axios";
@@ -33,6 +34,9 @@ function Home () {
   const { userData } = useSelector(state => state.user)
   const [openProfile, setOpenProfile] = useState(false)
   const dispatch = useDispatch()
+   
+  const navigate = useNavigate()
+
   const handlelogOut = async () => {
     try {
       await axios.get(`${serverUrl}/api/auth/logout`, {withCredentials: true})
@@ -110,7 +114,7 @@ function Home () {
                 +
                 </span>
                         </button>
-                        <button className="w-full px-4 py-3 text-left text-sm hover:bg-white/5">Dashboard</button>
+                        <button className="w-full px-4 py-3 text-left text-sm hover:bg-white/5" onClick={() => navigate("/dashboard")}>Dashboard</button>
                         <button className="w-full px-4 py-3 text-left text-sm text-red-400 hover:bg-white/5" onClick={handlelogOut}>Logout</button>
                         
                       </motion.div>
@@ -146,7 +150,7 @@ function Home () {
             Turn your ideas into beautiful, high-converting, and fully responsive websites instantly. No code, no templates-just pure AI magic delivering production-ready results in seconds.
           </motion.p>
 
-          <button className="px-10 py-4 rounded-xl bg-white text-black font-semibold hover:scale-105 transition mt-10"> Get Started</button>
+          <button className="px-10 py-4 rounded-xl bg-white text-black font-semibold hover:scale-105 transition mt-10" onClick={() => navigate("/dashboard")}>{userData? "Go to Dashboard" : "Get Started"}</button>
         </section>
 
         <section className="max-w-7xl mx-auto px-6 pb-32">
@@ -162,7 +166,10 @@ function Home () {
                   {/* Describe your idea in plain English and watch AI create a beautiful, fully responsive website in seconds */}{h.description}
                 </p>
               </motion.div>
+
+                
             ))}
+            
           </div>
 
         </section>

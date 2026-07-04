@@ -24,7 +24,7 @@ function App() {
         />
         <Route
           path="/generateWebsite"
-          element={userData ? <GenerateWebsite /> : <Navigate to={"/"}/>}
+          element={userData ? <GenerateWebsite /> : <Home/>}
         />
         
         

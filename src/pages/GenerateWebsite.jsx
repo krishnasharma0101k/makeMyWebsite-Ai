@@ -2,10 +2,25 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "motion/react";
+import { useState } from "react";
+import axios from "axios";
+import { serverUrl } from "../App";
 
 function GenerateWebsite() {
   const navigate = useNavigate()
+  const [prompt, setPrompt] = useState("")
 
+  const handleGenerateWebsite = async () => {
+    try {
+      const result = await axios.post(`${serverUrl}/api/website/generate`, {prompt}, {withCredentials: true})
+      console.log(result)
+    } catch (error) {
+      console.log(error)
+        console.log("Status:", error.response?.status);
+  console.log("Data:", error.response?.data);
+  console.log("Message:", error.message);
+    }
+  }
   return (
     <div className="min-h-screen bg-linear-to-br from-[#050505] vai-[#0b0b0b] to-[#050505] text-white">
      
@@ -45,7 +60,10 @@ function GenerateWebsite() {
                   <h1 className="text-xl font-semibold mb-2">Describe your website idea</h1>
 
                   <div className="relative">
-                    <textarea name="" id="" placeholder="Describe your website idea in detail..."
+                    <textarea
+                     onChange={(e) => setPrompt(e.target.value)}
+                     value={prompt}
+                      placeholder="Describe your website idea in detail..."
                     className=" w-full h-56 p-6 rounded-3xl bg-black/60 border border-white/10 outline-none resize-none text-sm leading-relaxed focus:ring-2 focus:ring-white/20"></textarea>
                   </div>
                 </div>
@@ -54,6 +72,7 @@ function GenerateWebsite() {
                   <motion.button
                     whileHover={{ scale: 1.05}}
                     whileTap={{ scale: 0.96}}
+                    onClick={handleGenerateWebsite}
                     className="px-14 py-4 rounded-2xl font-semibold text-lg bg-white text-black">
                       Generate Website
                   </motion.button>

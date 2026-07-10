@@ -6,7 +6,7 @@ import Home from "./pages/home";
 import Dashboard from "./pages/Dashboard";
 import GenerateWebsite from "./pages/GenerateWebsite";
 import useGetCurrentUser from "./hooks/useGetCurrentUser";
-import Editor from "./pages/editor";
+import WebsiteEditor from "./pages/editor";
 
 export const serverUrl = "http://localhost:3000";
 
@@ -29,7 +29,7 @@ function App() {
         />
         <Route
            path="/editor/:id"
-            element={userData ? <Editor /> : <Home />}
+            element={userData ? <WebsiteEditor /> : <Home />}
           />
         
         

@@ -171,7 +171,7 @@ function WebsiteEditor() {
                     exit = {{ y: "100%" }}
                     className="fixed inset-0 z-[9999] bg-black flex flex-col"
                     >
-                        <Header/>
+                        <Header onClose={() => setShowChat(false)}/>
                                <>
          <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
         {message.map((m, i)=> (
@@ -257,11 +257,17 @@ function WebsiteEditor() {
         </div>
         
     );
-    function Header() {
-    return(
-        <div className="h-14 px-4 flex items-center justify-between border-b border-white/10">
-            <span className="font-semibold truncate">{website.title}</span>
-        </div>
+    function Header({ onClose }) {
+  return (
+    <div className="h-14 px-4 flex items-center justify-between border-b border-white/10">
+      <span className="font-semibold truncate">{website.title}</span>
+
+      {onClose && (
+        <button onClick={onClose}>
+          <X size={18} color="white" />
+        </button>
+      )}
+    </div>
     ) 
 }
 

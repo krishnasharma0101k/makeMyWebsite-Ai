@@ -1,10 +1,11 @@
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Rocket, Share2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { useSelector} from "react-redux"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { serverUrl } from "../App";
+import { button } from "motion/react-client";
 
 
 function Dashboard() {
@@ -101,6 +102,11 @@ function Dashboard() {
           <p className="text-xs text-zinc-400">Last Updated {""}
             {new Date(w.updatedAt).toDateString()}
           </p>
+
+          {!w.deploy ? (
+            <button className="mt-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 hover:scale-105 transition"><Rocket size={18}/> Deploy</button>
+          ): (<button><Share2 size={18}/> Share Link</button>)}
+
         </div>
 
       </motion.div>

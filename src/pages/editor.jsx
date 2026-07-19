@@ -46,6 +46,18 @@ function WebsiteEditor() {
         }
     }
 
+    const handleDeploy = async () => {
+        try {
+          const result = await axios.get(`${serverUrl}/api/website/deploy/${website._id}`, {withCredentials: true})
+    
+          window.open(`${result.data.url}`, "_blank")
+          
+        } catch (error) {
+          console.log(error);
+          
+        }
+      }
+
     useEffect(() => {
     if (!updatLoading) return;
 
@@ -148,7 +160,10 @@ function WebsiteEditor() {
                 <div className="h-14 px-4 flex justify-between items-center border-b border-white/10 bg-black/80">
                 <span className="text-xs text-zinc-400">Live Preview</span>
                 <div className="flex gap-2">
-                    <button className="flex items-center gap-2 px-4 py-1.5 rounded-lg bg-linear-to-r from-indigo-500 to-purple-500 text-sm font-semibold hover:scale-150 transition"><Rocket size={14}/>Deploy</button>
+                    {website.deployed ? "": <button className="flex items-center gap-2 px-4 py-1.5 rounded-lg bg-linear-to-r from-indigo-500 to-purple-500 text-sm font-semibold hover:scale-150 transition"
+                    onClick={handleDeploy}
+                    ><Rocket size={14}/>Deploy</button>}
+                    
 
                     <button className="p-2 lg:hidden" onClick={()=> setShowChat(true)}><MessageSquare size={18}/></button>
 
@@ -160,7 +175,7 @@ function WebsiteEditor() {
 
                 </div>
                 
-                <iframe ref={iframeRef} className="flex-1 w-full bg-white"/>
+                <iframe ref={iframeRef} sandbox='allow-scripts allow-same-origin allow-forms' className="flex-1 w-full bg-white"/>
             </div>
 
             <AnimatePresence>
@@ -247,7 +262,7 @@ function WebsiteEditor() {
                     exit={{ x: "100%" }}
                     className="fixed inset-0 z-[9999] bg-black "
                   >
-                    <iFrame className="w-full h-full bg-white" srcDoc={code}/>
+                    <iFrame className="w-full h-full bg-white" srcDoc={code} sandbox='allow-scripts allow-same-origin allow-forms' />
                     <button className="absolute top-4 right-4 p-2 bg-black/50 rounded-full" onClick={() => setShowFullPreview(false)}><X size={18}/></button>
                     
                   </motion.div>

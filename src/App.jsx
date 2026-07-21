@@ -10,7 +10,7 @@ import WebsiteEditor from "./pages/editor";
 import LiveSite from "./pages/LiveSite";
 import Pricing from "./pages/pricing";
 
-export const serverUrl = "http://localhost:3000";
+export const serverUrl = "https://makemywebsite-ai-backend.onrender.com";
 
 function App() {
   useGetCurrentUser();

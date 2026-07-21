@@ -8,7 +8,7 @@ import GenerateWebsite from "./pages/GenerateWebsite";
 import useGetCurrentUser from "./hooks/useGetCurrentUser";
 import WebsiteEditor from "./pages/editor";
 import LiveSite from "./pages/LiveSite";
-import Pricing from "./pages/pricing";
+import Pricing from "./pages/Pricing";
 
 export const serverUrl = "https://makemywebsite-ai-backend.onrender.com";
 
